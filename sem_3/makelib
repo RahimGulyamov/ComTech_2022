@@ -1,0 +1,15 @@
+all: libsum.a libdivide.a clean
+
+libdivide.a: divide.cpp
+	g++ -c divide.cpp -Iinclude
+	ar -cr libdivide.a divide.o
+	ranlib divide.a
+
+libsum.a: sum.cpp
+	g++ -c sum.cpp -Iinclude
+	ar -cr libsum.a sum.o
+	ranlib sum.a
+
+
+clean:
+	rm -rf *.o

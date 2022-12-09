@@ -5,6 +5,7 @@ int main() {
   House semerka("Dorm N7", "Pervomayskaya 30k7", 5, 1);
   EuroHouse trinashka("Dorm N13", "Lichchevskaya 2", 11, 2, 5, 5);
   std::string file_name;
+  std::cout << "file_name\t";
   std::cin >> file_name;
   semerka.FOut(file_name);
   semerka.FIn(file_name);

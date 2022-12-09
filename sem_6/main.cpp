@@ -17,7 +17,4 @@ int main() {
             << '\n';
   std::cout << "\ttrinashka's electrical efficiency\t"
             << trinashka.GetElectric() << '\n';
-
-  semerka.FOut();
-  semerka.FIn();
 }

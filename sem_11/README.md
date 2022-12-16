@@ -4,6 +4,6 @@
 Напишите программу, которая создает с помощью семафоров
 критическую зону, вокруг записи в разделяемую память
 
+![Снимок экрана от 2022-12-17 00-55-47](https://user-images.githubusercontent.com/98908901/208196189-fc93344c-2dfc-4d56-b91f-ee123760fea1.png)
+![Снимок экрана от 2022-12-17 00-56-19](https://user-images.githubusercontent.com/98908901/208196204-5196e3e3-eb13-4eb7-adff-a99bca61842f.png)
 
-![Снимок экрана от 2022-12-17 00-55-47](https://user-images.githubusercontent.com/98908901/208195953-dd64813d-8f1a-41c9-92a4-2bd537ec59a7.png)
-![Снимок экрана от 2022-12-17 00-55-47](https://user-images.githubusercontent.com/98908901/208196026-453a1d6a-17f8-4f46-af70-26311402283e.png)

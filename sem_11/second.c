@@ -11,7 +11,7 @@ int main() {
   int shmid;
   int is_new = 1;
   int semid;
-  char pathname[] = "first";
+  char pathname[] = "first.c";
   key_t key;
   struct sembuf buf_first;
   struct sembuf buf_second;
@@ -53,40 +53,51 @@ int main() {
     exit(-1);
   }
 
-  if (semop(semid, &buf_first, 1) < 0) {
-    printf("Can\'t wait for condition\n");
-    exit(-1);
-  }
-
   if (is_new == 1) {
     res[0] = 0;
     res[1] = 1;
   } else {
     ++res[1];
   }
+
+  if (semop(semid, &buf_second, 1) < 0) {
+    printf("Can\'t wait for condition\n");
+    exit(-1);
+  }
+
   printf("second\t res[0] = %d\t res[1] = %d\n", res[0], res[1]);
-  
-  for (int i = 0; i < 100; ++i) {
+
+  for (int i = 1; i < 100; ++i) {
     if (semop(semid, &buf_first, 1) < 0) {
       printf("Can\'t wait for condition\n");
       exit(-1);
     }
+    
+    ++res[1];
+    
     if (semop(semid, &buf_second, 1) < 0) {
       printf("Can\'t wait for condition\n");
       exit(-1);
     }
-    ++res[1];
     printf("second\t res[0] = %d\t res[1] = %d\n", res[0], res[1]);
   }
+  
   if (shmdt(res) < 0) {
     printf("Can't detach shared memory\n");
     exit(-1);
   }
+  
   if (semctl(semid, 0, IPC_RMID, 0) < 0) {
     printf("Can't delete semafor\n It was deleted by first\n");
     exit(-1);
   }
-  printf("second\t finish\n");
+  
+  if (shmctl(shmid, IPC_RMID, 0) < 0) {
+    printf("Can't delete shared memory\n");
+    exit(-1);
+  }
 
+  printf("second\t finish\n");
+  
   return 0;
 }
